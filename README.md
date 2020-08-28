@@ -8,7 +8,6 @@
 `pip install requirements.txt`
 
 
-```
  ## run
  - `python manage.py migrate`
  - `python manage.py runserver`
