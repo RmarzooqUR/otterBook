@@ -14,8 +14,13 @@
 
  ## api spec
 ![](sc/sc_api_spec.png)
+ ## get comment
 ![](sc/sc_get_comment.png)
+ ## post comment
 ![](sc/sc_postComment.png)
+ ## searching
 ![](sc/sc_search.png)
+ ## uploading
 ![](sc/sc_upload.png)
+ ## upvoting
 ![](sc/sc_upvote.png)
