@@ -35,7 +35,11 @@ class UploadView(APIView):
         return Response(serial.errors)
 
 class SearchView(APIView):
+    """
+    View for searching a book by title
+    """
     def post(self, request):
+        """Post method that accepts json with title key"""
         try:
             qs = Book.objects.filter(title__icontains=request.data['title'])
             serializer = BookSerializer(qs, many=True)
@@ -47,7 +51,9 @@ class SearchView(APIView):
             )
 
 class UpvoteView(APIView):
+    """View for casting an upvote on a book by its id"""
     def get(self, request, pk):
+        """get method with id/pk given in the url"""
         try:
             toUpvote = Book.objects.get(pk=pk)
             toUpvote.votes += 1
@@ -61,12 +67,16 @@ class UpvoteView(APIView):
             )
 
 class CommentView(APIView):
+    """View for posting and viewing comments on a book"""
+    
     def get(self, request, pk):
+        """Get method retrieves comments using id/pk passed in url"""
         retrieved = Comment.objects.filter(book_id=pk)
         serializer = CommentSerializer(retrieved, many=True)
         return Response(serializer.data)
 
     def post(self, request, pk):
+        """Post method for posting comment on a book with its id"""
         try:
             comment = request.data['comment']
             data = {'comment':comment, 'book':pk}
