@@ -2,8 +2,8 @@ from django.db import models
 
 # Create your models here.
 class Book(models.Model):
-    title = models.CharField(null=True, max_length=255)
-    asset = models.FileField(upload_to='media/', null=True)
+    title = models.CharField(max_length=255)
+    asset = models.FileField()
     votes = models.PositiveIntegerField(default=0)
 
 class Comment(models.Model):

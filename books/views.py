@@ -1,8 +1,8 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status, generics
 from rest_framework.parsers import MultiPartParser, FormParser
-from .serializers import BookSerializer, CommentSerializer
+from .serializers import BookSerializer, CommentSerializer, UploadSerializer
 from .models import Book, Comment
 # Create your views here.
 
@@ -19,20 +19,9 @@ class APISpec(APIView):
         ]
         return Response(endpoints)
 
-class UploadView(APIView):
-    parser_classes = (MultiPartParser, FormParser, )
+class UploadView(generics.CreateAPIView):
+    serializer_class = UploadSerializer
 
-    def post(self, request):
-        # if request.FILES is None:
-        #     raise ParseError("empty content")
-        # book = request.FILES
-        # title = request.data['title']
-
-        serial = BookSerializer(data=request.data)
-        if serial.is_valid():
-            serial.save()
-            return Response(serial.data, status=status.HTTP_201_CREATED)
-        return Response(serial.errors)
 
 class SearchView(APIView):
     """

@@ -7,6 +7,12 @@ class BookSerializer(ModelSerializer):
         model = Book
         fields = ('title', 'asset', 'votes', 'pk')
 
+class UploadSerializer(ModelSerializer):
+    class Meta:
+        model = Book
+        fields = ('title', 'asset')
+
+
 class CommentSerializer(ModelSerializer):
     class Meta: 
         model = Comment
